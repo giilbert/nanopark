@@ -1,0 +1,39 @@
+extends Camera2D
+
+
+var points_of_interest = []
+
+func _ready():
+	points_of_interest.append($"/root/Level 1/Player 1")
+	points_of_interest.append($"/root/Level 1/Player 2")
+	points_of_interest.append($"/root/Level 1/Player 3")
+
+
+func _physics_process(_delta):
+	var top_left_extrema = Vector2(float("-inf"), float("-inf"))
+	var bottom_right_extrema = Vector2(float("inf"), float("inf"))
+	
+	for point_of_interest in points_of_interest:
+		var px = point_of_interest.position.x
+		var py = point_of_interest.position.y
+		
+		if py < top_left_extrema.y:
+			top_left_extrema.y = py
+		elif py > bottom_right_extrema.y:
+			bottom_right_extrema.y = py
+		if px < top_left_extrema.x:
+			top_left_extrema.x = px
+		elif px > bottom_right_extrema.x:
+			bottom_right_extrema.x = px
+	
+	
+	var target_position = (top_left_extrema + bottom_right_extrema) / 2
+	
+	var room_size = (top_left_extrema - bottom_right_extrema).abs()
+	var zoom_unnormal = room_size / Vector2(get_viewport().size) 
+	var z = clampf(max(zoom_unnormal.x, zoom_unnormal.y) + 0.4, 0.5, 6.0)
+	
+	self.zoom = lerp(self.zoom, Vector2(1/z, 1/z), 0.05)
+	self.position = lerp(self.position, target_position, 0.1)
+
+
