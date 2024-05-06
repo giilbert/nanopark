@@ -4,10 +4,14 @@ extends Camera2D
 var points_of_interest = []
 
 func _ready():
-	points_of_interest.append($"/root/Level 1/Player 1")
-	points_of_interest.append($"/root/Level 1/Player 2")
-	points_of_interest.append($"/root/Level 1/Player 3")
+	pass
 
+func add_point_of_interest(node):
+	points_of_interest.append(node)
+
+func remove_point_of_interest(node):
+	var index = points_of_interest.find(node)
+	points_of_interest.remove_at(index)
 
 func _physics_process(_delta):
 	var top_left_extrema = Vector2(float("-inf"), float("-inf"))

@@ -1,44 +1,36 @@
-extends CharacterBody2D
+extends Node
 
 
-const SPEED = 250.0
-const JUMP_VELOCITY = -400.0
+var controls = null
+var control_type = null
+var id = null
 
-var g = ProjectSettings.get_setting("physics/2d/default_gravity")
+var actor = null
 
-@export var left_axis = "left-1"
-@export var right_axis = "right-1"
-@export var jump_axis = "jump-1"
-@export var color: Color = Color.GHOST_WHITE
+func attach_actor(node: Node2D):
+	self.actor = node
+	self.actor._core = weakref(self)
 
-@onready var material_clone = $AnimatedSprite2D.material.duplicate() 
 
-func _ready():
-	self.safe_margin = 0.0001
-	material_clone.set_shader_parameter("color", color)
-	$AnimatedSprite2D.material = material_clone
+func get_horizontal_axis():
+	return self.controls.get_horizontal_axis()
 
-var can_double_jump = true
+func get_vertical_axis():
+	return self.controls.get_vertical_axis()
 
-func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += g * delta
-		if Input.is_action_just_pressed(jump_axis) and can_double_jump:
-			$GPUParticles2D.emitting = true
-			velocity.y = JUMP_VELOCITY * 1.1
-			can_double_jump = false
-	else:
-		can_double_jump = true
-		if Input.is_action_just_pressed(jump_axis):
-			velocity.y = JUMP_VELOCITY
-	
-	var direction = Input.get_axis(left_axis, right_axis)
-	if direction:
-		velocity.x = direction * SPEED
-		$AnimatedSprite2D.flip_h = direction == -1
-		$AnimatedSprite2D.animation = "walk"
-	else:
-		$AnimatedSprite2D.animation = "idle"
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+func get_action_axis():
+	return self.controls.get_action_axis()
 
-	move_and_slide()
+var dict = {}
+func was_just_pressed(name: String, f: Callable):
+	var last = dict.get(name, false)
+	var f_result = f.call()
+	var r = f_result and not last
+	dict[name] = f_result
+	return r
+
+func was_up_just_pressed():
+	return was_just_pressed(
+		"up",
+		func(): return get_vertical_axis() > 0.5
+	)
