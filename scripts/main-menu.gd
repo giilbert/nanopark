@@ -13,16 +13,13 @@ func _ready():
 	pass # Replace with function body.
 
 func update_ui():
-	$UI/CenterContainer/VBoxContainer/HBoxContainer/Remove.disabled = \
+	$"UI/CenterContainer/VBoxContainer/Keyboard Players/Remove".disabled = \
 		LevelManager.num_keyboard_players == 0
-	$UI/CenterContainer/VBoxContainer/HBoxContainer/Add.disabled = \
+	$"UI/CenterContainer/VBoxContainer/Keyboard Players/Add".disabled = \
 		LevelManager.num_keyboard_players == 3
-	$UI/CenterContainer/VBoxContainer/HBoxContainer/Label.text =              \
+	$"UI/CenterContainer/VBoxContainer/Keyboard Players/Label".text =              \
 		str(LevelManager.num_keyboard_players) + " keyboard player"           \
-		+ ("" if LevelManager.num_keyboard_players == 1 else "s")             \
-		+ ", "                                                                \
-		+ str(LevelManager.num_joystick_players) + " joystick player"         \
-		+ ("" if LevelManager.num_joystick_players == 1 else "s")
+		+ ("" if LevelManager.num_keyboard_players == 1 else "s")
 
 func _on_add_pressed():
 	LevelManager.add_player(LevelManager.ControlType.KEYBOARD)

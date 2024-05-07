@@ -14,7 +14,6 @@ func _init(id: int):
 	self.right_axis_name = "right-" + _id
 	self.action_axis_name = "action-" + _id
 
-
 func get_horizontal_axis():
 	return Input.get_axis(left_axis_name, right_axis_name)
 

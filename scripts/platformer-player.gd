@@ -11,14 +11,12 @@ var core:
 
 var g = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-@export var color: Color = Color.GHOST_WHITE
-
 @onready var material_clone = $AnimatedSprite2D.material.duplicate()
 
 
 func _ready():
 	self.safe_margin = 0.0001
-	material_clone.set_shader_parameter("color", color)
+	material_clone.set_shader_parameter("color", self.core.color)
 	$AnimatedSprite2D.material = material_clone
 
 var can_double_jump = true

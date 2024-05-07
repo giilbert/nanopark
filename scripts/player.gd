@@ -4,7 +4,7 @@ extends Node
 var controls = null
 var control_type = null
 var id = null
-
+var color = null
 var actor = null
 
 func attach_actor(node: Node2D):
