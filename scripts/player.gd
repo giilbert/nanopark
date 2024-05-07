@@ -18,8 +18,8 @@ func get_horizontal_axis():
 func get_vertical_axis():
 	return self.controls.get_vertical_axis()
 
-func get_action_axis():
-	return self.controls.get_action_axis()
+func is_action_pressed():
+	return self.controls.is_action_pressed()
 
 var dict = {}
 func was_just_pressed(name: String, f: Callable):
@@ -34,3 +34,7 @@ func was_up_just_pressed():
 		"up",
 		func(): return get_vertical_axis() > 0.5
 	)
+
+func was_action_just_pressed():
+	return was_just_pressed("action", is_action_pressed)
+

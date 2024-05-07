@@ -3,7 +3,7 @@ extends Node
 const KeyboardControls = preload("res://scripts/keyboard-controls.gd")
 
 const player_template = preload("res://templates/player.tscn")
-const platformer_player = preload("res://templates/platformer-player.tscn")
+const platformer_player = preload("res://templates/king-of-the-mountain-player.tscn")
 
 var available_colors = [
 	Color.from_string("#ec7063", Color.CORNFLOWER_BLUE),

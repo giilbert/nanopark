@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 250.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 300.0
+const JUMP_VELOCITY = -450.0
 
 var _core = null
 var core:
@@ -15,7 +15,6 @@ var g = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	self.safe_margin = 0.0001
 	material_clone.set_shader_parameter("color", self.core.color)
 	$AnimatedSprite2D.material = material_clone
 
@@ -41,5 +40,8 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.animation = "idle"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if self.core.was_action_just_pressed():
+		print("action just pressed")
 	
 	move_and_slide()

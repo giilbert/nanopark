@@ -20,5 +20,5 @@ func get_horizontal_axis():
 func get_vertical_axis():
 	return Input.get_axis(down_axis_name, up_axis_name)
 
-func is_action_just_pressed():
-	return Input.is_action_just_pressed(action_axis_name)
+func is_action_pressed():
+	return Input.is_action_pressed(action_axis_name)
