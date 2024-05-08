@@ -5,6 +5,7 @@ const KeyboardControls = preload("res://scripts/keyboard-controls.gd")
 const player_template = preload("res://templates/player.tscn")
 const platformer_player = preload("res://templates/king-of-the-mountain-player.tscn")
 
+
 var available_colors = [
 	Color.from_string("#ec7063", Color.CORNFLOWER_BLUE),
 	Color.from_string("#28b463", Color.CORNFLOWER_BLUE),
@@ -40,6 +41,12 @@ var num_joystick_players:
 
 func _ready():
 	available_colors.reverse()
+	
+	# testing code
+	await get_tree().create_timer(0.01).timeout 
+	add_player(ControlType.KEYBOARD)
+	add_player(ControlType.KEYBOARD)
+	load_level("ice-hockey")
 
 func get_spawn_points(scene = get_tree().current_scene):
 	var spawn_points_node = scene.get_node("Spawn Points")
@@ -95,7 +102,8 @@ func load_level(id: String):
 	var camera_node = level_scene.get_node("Camera")
 	
 	for player in players.values():
-		var actor = platformer_player.instantiate()
+		var player_template = level_scene.get_meta("player_type")
+		var actor = player_template.instantiate()
 		player.attach_actor(actor)
 		camera_node.add_point_of_interest(actor)
 		actor.position = spawn_points[spawn_point_index]

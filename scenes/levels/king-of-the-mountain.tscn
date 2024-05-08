@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b48i0aajjvpgq"]
+[gd_scene load_steps=4 format=3 uid="uid://b48i0aajjvpgq"]
 
 [ext_resource type="TileSet" uid="uid://re5tlq6jq3hw" path="res://art/tileset.tres" id="1_l1vgc"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_p03w4"]
+[ext_resource type="PackedScene" uid="uid://k6m7eoi6tx0j" path="res://templates/king-of-the-mountain-player.tscn" id="1_wq7hk"]
 
 [node name="King of the Mountain" type="Node2D"]
 texture_filter = 1
+metadata/player_type = ExtResource("1_wq7hk")
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)

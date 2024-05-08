@@ -33,3 +33,7 @@ func _on_remove_pressed():
 
 func _on_load_king_of_the_mountain_pressed():
 	LevelManager.load_level("king-of-the-mountain")
+
+
+func _on_load_ice_hockey_pressed():
+	LevelManager.load_level("ice-hockey")

@@ -243,17 +243,13 @@ theme_override_constants/separation = 20
 [node name="Container" type="VBoxContainer" parent="UI/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Load Ice Hockey" type="Button" parent="UI/CenterContainer/VBoxContainer/Container"]
+layout_mode = 2
+text = "Ice Hockey"
+
 [node name="Load King of the Mountain" type="Button" parent="UI/CenterContainer/VBoxContainer/Container"]
 layout_mode = 2
 text = "King of the Mountain"
-
-[node name="Load Whack a Mole" type="Button" parent="UI/CenterContainer/VBoxContainer/Container"]
-layout_mode = 2
-text = "Whack a Mole"
-
-[node name="Load Spaceships" type="Button" parent="UI/CenterContainer/VBoxContainer/Container"]
-layout_mode = 2
-text = "Spaceships"
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -265,4 +261,5 @@ layer_0/tile_data = PackedInt32Array(589841, 131072, 2, 524305, 131072, 0, 58984
 
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Keyboard Players/Remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Keyboard Players/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Container/Load Ice Hockey" to="." method="_on_load_ice_hockey_pressed"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Container/Load King of the Mountain" to="." method="_on_load_king_of_the_mountain_pressed"]
