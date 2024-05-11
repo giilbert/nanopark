@@ -120,6 +120,8 @@ public partial class LevelManager : Node
     {
         CallDeferred(nameof(DeferredReady));
         Instance = this;
+
+        Engine.GetSingleton("ControllerInput").Call("foo", 2);
     }
 
     public void DeferredReady()
