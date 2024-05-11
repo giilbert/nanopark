@@ -124,8 +124,8 @@ public partial class LevelManager : Node
 
     public void DeferredReady()
     {
-        // MainMenuAddPlayer(ControlType.Keyboard);
-        // MainMenuAddPlayer(ControlType.Keyboard);
-        // LoadLevel("ice-hockey");
+        MainMenuAddPlayer(ControlType.Keyboard);
+        MainMenuAddPlayer(ControlType.Keyboard);
+        LoadLevel("ice-hockey");
     }
 }

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://betgota220unt"]
+
+[ext_resource type="Texture2D" uid="uid://ch2vo4apr18mu" path="res://art/hockey-puck.png" id="1_2dq30"]
+[ext_resource type="Script" path="res://scripts/HockeyPuck.cs" id="1_uwynk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vk38q"]
+friction = 0.2
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnubh"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5dnkm"]
+radius = 34.2345
+
+[node name="Hockey Puck" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_vk38q")
+gravity_scale = 0.0
+continuous_cd = 2
+angular_damp = 30.0
+script = ExtResource("1_uwynk")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_2dq30")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cnubh")
+
+[node name="PickUpArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+shape = SubResource("CircleShape2D_5dnkm")
