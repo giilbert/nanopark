@@ -5,17 +5,22 @@ public partial class IceHockeyPlayer : RigidBody2D, IActor
 {
     const float ACCELERATION = 250.0f;
     const float MAX_SPEED = 800.0f;
+    const float LAUNCH_SPEED = 500.0f;
 
     public Vector2 Heading { get; private set; }
     public HockeyPuck Puck { get; set; }
 
     private Controls _controls;
+    private AnimationPlayer _animationPlayer;
     private ShaderMaterial _materialClone;
     private AnimatedSprite2D _sprite;
+    private Sprite2D _hockeyStickSprite;
 
     public void Initialize(Player player)
     {
-        _sprite = GetNode("AnimatedSprite2D") as AnimatedSprite2D;
+        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        _hockeyStickSprite = GetNode<Sprite2D>("Hockey Stick");
         _controls = player.Controls;
 
         _materialClone = _sprite.Material.Duplicate() as ShaderMaterial;
@@ -47,8 +52,16 @@ public partial class IceHockeyPlayer : RigidBody2D, IActor
 
         if (_controls.WasJustTriggered(Controls.Axis.Action))
         {
-            Puck?.Launch(Heading);
+            _animationPlayer.Play("Hockey Stick Spin Fast");
+            Puck?.Launch(Heading * LAUNCH_SPEED + LinearVelocity);
         }
+        else if (Puck != null)
+        {
+            _animationPlayer.Play("Hockey Stick Spin");
+        }
+
+        _hockeyStickSprite.FlipH = Heading.X < 0 && Puck == null;
+        _hockeyStickSprite.Rotation = Heading.Angle();
 
         if (LinearVelocity.Length() < MAX_SPEED)
             ApplyForce(direction * ACCELERATION * Mass);

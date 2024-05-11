@@ -47,9 +47,9 @@ public partial class HockeyPuck : RigidBody2D
         }
     }
 
-    public async void Launch(Vector2 direction)
+    public async void Launch(Vector2 velocity)
     {
-        LinearVelocity = direction * 1000;
+        LinearVelocity = velocity;
         PuckOwner.Puck = null;
         PuckOwner = null;
 
