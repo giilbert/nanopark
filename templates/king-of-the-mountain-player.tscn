@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://k6m7eoi6tx0j"]
 
-[ext_resource type="Script" path="res://scripts/platformer-player.gd" id="1_he6k8"]
+[ext_resource type="Script" path="res://scripts/KingOfTheMountainPlayer.cs" id="1_33t66"]
 [ext_resource type="Shader" path="res://scripts/player.gdshader" id="2_s7ogh"]
 [ext_resource type="Texture2D" uid="uid://bv3tescbb3y1l" path="res://art/player-still.png" id="3_ho616"]
 [ext_resource type="Texture2D" uid="uid://ccxqsj4grdjdh" path="res://art/player-move.png" id="4_a8h31"]
@@ -60,10 +60,10 @@ scale_min = 8.0
 scale_max = 8.0
 color = Color(0.969137, 0.969137, 0.969137, 0.356863)
 
-[node name="Platformer Player" type="CharacterBody2D"]
+[node name="King Of The Mountain Player" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
-script = ExtResource("1_he6k8")
+script = ExtResource("1_33t66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6a3dr")

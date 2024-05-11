@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c3oonuwxhqmih"]
 
-[ext_resource type="Script" path="res://scripts/ice-hockey-player.gd" id="1_lafvf"]
+[ext_resource type="Script" path="res://scripts/IceHockeyPlayer.cs" id="1_v64ou"]
 [ext_resource type="Shader" path="res://scripts/player.gdshader" id="2_pve8y"]
 [ext_resource type="Texture2D" uid="uid://bv3tescbb3y1l" path="res://art/player-still.png" id="3_q8ptm"]
 [ext_resource type="Texture2D" uid="uid://ccxqsj4grdjdh" path="res://art/player-move.png" id="4_y5uvn"]
@@ -52,7 +52,7 @@ mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_8ywyj")
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_lafvf")
+script = ExtResource("1_v64ou")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_6a3dr")

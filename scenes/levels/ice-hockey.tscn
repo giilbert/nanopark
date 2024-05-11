@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cheumfthp7a6u"]
 
 [ext_resource type="PackedScene" uid="uid://c3oonuwxhqmih" path="res://templates/ice-hockey-player.tscn" id="1_55y5t"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="1_mfo8y"]
+[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_101kl"]
 [ext_resource type="TileSet" uid="uid://re5tlq6jq3hw" path="res://art/tileset.tres" id="3_jd1yo"]
 
 [node name="Ice Hockey" type="Node2D"]
 metadata/player_type = ExtResource("1_55y5t")
 
 [node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("1_mfo8y")
+script = ExtResource("2_101kl")
 
 [node name="Spawn Points" type="Node" parent="."]
 
