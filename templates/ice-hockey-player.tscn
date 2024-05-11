@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cku7eidwh4xxu" path="res://art/hockey-stick.png" id="7_vn8aa"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8ywyj"]
-friction = 0.01
+friction = 0.13
 bounce = 0.15
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6a3dr"]

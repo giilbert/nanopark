@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://betgota220unt"]
+[gd_scene load_steps=9 format=3 uid="uid://betgota220unt"]
 
 [ext_resource type="Texture2D" uid="uid://ch2vo4apr18mu" path="res://art/hockey-puck.png" id="1_2dq30"]
 [ext_resource type="Script" path="res://scripts/HockeyPuck.cs" id="1_uwynk"]
@@ -11,12 +11,31 @@ bounce = 0.6
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5dnkm"]
-radius = 34.2345
+radius = 38.1182
+
+[sub_resource type="Curve" id="Curve_7rj0i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kl26m"]
+curve = SubResource("Curve_7rj0i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5tlr4"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+color = Color(0.870588, 0.870588, 0.870588, 0.545098)
+alpha_curve = SubResource("CurveTexture_kl26m")
 
 [node name="Hockey Puck" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_vk38q")
 gravity_scale = 0.0
-continuous_cd = 2
+continuous_cd = 1
 angular_damp = 30.0
 script = ExtResource("1_uwynk")
 
@@ -32,3 +51,10 @@ shape = SubResource("CircleShape2D_cnubh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
 shape = SubResource("CircleShape2D_5dnkm")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 10000
+process_material = SubResource("ParticleProcessMaterial_5tlr4")
+lifetime = 10.0
+fixed_fps = 120

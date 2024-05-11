@@ -3,9 +3,9 @@ using Godot;
 
 public partial class IceHockeyPlayer : RigidBody2D, IActor
 {
-    const float ACCELERATION = 250.0f;
-    const float MAX_SPEED = 800.0f;
-    const float LAUNCH_SPEED = 500.0f;
+    const float ACCELERATION = 200.0f;
+    const float MAX_SPEED = 400.0f;
+    const float LAUNCH_SPEED = 400.0f;
 
     public Vector2 Heading { get; private set; }
     public HockeyPuck Puck { get; set; }
@@ -50,7 +50,8 @@ public partial class IceHockeyPlayer : RigidBody2D, IActor
         if (direction != Vector2.Zero)
             Heading = direction;
 
-        if (_controls.WasJustTriggered(Controls.Axis.Action))
+        bool wasActionPressed = _controls.WasJustTriggered(Controls.Axis.Action);
+        if (wasActionPressed && Puck != null)
         {
             _animationPlayer.Play("Hockey Stick Spin Fast");
             Puck?.Launch(Heading * LAUNCH_SPEED + LinearVelocity);
@@ -58,6 +59,11 @@ public partial class IceHockeyPlayer : RigidBody2D, IActor
         else if (Puck != null)
         {
             _animationPlayer.Play("Hockey Stick Spin");
+        }
+        else if (wasActionPressed && Puck == null)
+        {
+            ApplyImpulse(-LinearVelocity * Mass * 0.8f);
+            return;
         }
 
         _hockeyStickSprite.FlipH = Heading.X < 0 && Puck == null;
