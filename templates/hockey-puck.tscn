@@ -35,8 +35,8 @@ alpha_curve = SubResource("CurveTexture_kl26m")
 [node name="Hockey Puck" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_vk38q")
 gravity_scale = 0.0
+inertia = 1.0
 continuous_cd = 1
-angular_damp = 30.0
 script = ExtResource("1_uwynk")
 
 [node name="Sprite" type="Sprite2D" parent="."]

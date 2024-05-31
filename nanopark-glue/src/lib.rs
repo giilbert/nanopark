@@ -1,16 +1,50 @@
+mod serial;
+
 use godot::{engine::Engine, prelude::*};
+use serial::SerialController;
 
 #[derive(GodotClass)]
-#[class(init, base=Object)]
+#[class(base=Object)]
 struct ControllerInputSingleton {
     base: Base<Object>,
+    serial: SerialController,
 }
 
 #[godot_api]
 impl ControllerInputSingleton {
     #[func]
-    fn foo(&mut self, number: i32) {
-        godot_print!("Hello from Rust! The number is {}", number);
+    fn list_ports(&self) -> Array<GString> {
+        self.serial.list_ports().iter().map(|s| s.into()).collect()
+    }
+
+    #[func]
+    fn connect(&mut self, port: GString) {
+        self.serial.connect(&port.to_string());
+    }
+
+    #[func]
+    fn poll(&mut self) {
+        self.serial.poll();
+    }
+
+    #[func]
+    fn disconnect(&mut self) {
+        self.serial.disconnect();
+    }
+
+    #[func]
+    fn get_controllers_state(&mut self) -> String {
+        serde_json::to_string(&self.serial.state.lock().controllers).expect("error serializing")
+    }
+}
+
+#[godot_api]
+impl IObject for ControllerInputSingleton {
+    fn init(base: Base<Object>) -> Self {
+        Self {
+            serial: SerialController::new(),
+            base,
+        }
     }
 }
 

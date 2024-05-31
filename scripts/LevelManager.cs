@@ -27,7 +27,10 @@ public partial class LevelManager : Node
             {
                 Color.FromHtml("#ec7064"),
                 Color.FromHtml("#28b463"),
-                Color.FromHtml("#3498db")
+                Color.FromHtml("#3498db"),
+                Color.FromHtml("#f39c12"),
+                Color.FromHtml("#8e44ad"),
+                Color.FromHtml("#f1c40f"),
             }
         );
     private int _currentPlayerId = 0;
@@ -62,15 +65,12 @@ public partial class LevelManager : Node
         _players[id] = player;
     }
 
-    public void MainMenuRemoveLastKeyboardPlayer()
+    public void MainMenuRemoveLastPlayerOfType(ControlType type)
     {
         if (_currentLevelId != "main-menu")
             throw new InvalidOperationException("not in main menu");
 
-        Player player = _players
-            .Values.Where(p => p.ControlType == ControlType.Keyboard)
-            .OrderBy(p => p.Id)
-            .Last();
+        Player player = _players.Values.Where(p => p.ControlType == type).OrderBy(p => p.Id).Last();
         Player removed = _players[player.Id];
         _availableColors.Push(removed.Color);
         _players.Remove(player.Id);
@@ -120,14 +120,28 @@ public partial class LevelManager : Node
     {
         CallDeferred(nameof(DeferredReady));
         Instance = this;
+    }
 
-        Engine.GetSingleton("ControllerInput").Call("foo", 2);
+    public override void _Process(double _dt)
+    {
+        Glue.Poll();
+        Glue.UpdateControllersState();
     }
 
     public void DeferredReady()
     {
-        MainMenuAddPlayer(ControlType.Keyboard);
-        MainMenuAddPlayer(ControlType.Keyboard);
-        LoadLevel("ice-hockey");
+        string[] ports = Glue.ListPorts();
+
+        foreach (string point in ports)
+        {
+            GD.Print("Available port: " + point);
+        }
+
+        Glue.Connect("/dev/ttyACM1");
+
+        // MainMenuAddPlayer(ControlType.Keyboard);
+        // MainMenuAddPlayer(ControlType.Keyboard);
+        // MainMenuAddPlayer(ControlType.Keyboard);
+        // LoadLevel("ice-hockey");
     }
 }

@@ -261,5 +261,7 @@ layer_0/tile_data = PackedInt32Array(589841, 131072, 2, 524305, 131072, 0, 58984
 
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Keyboard Players/Remove" to="." method="OnRemoveKeyboardPlayer"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Keyboard Players/Add" to="." method="OnAddKeyboardPlayer"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Joystick Players/Remove" to="." method="OnRemoveJoystickPlayer"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Joystick Players/Add" to="." method="OnAddJoystickPlayer"]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Container/Load Ice Hockey" to="." method="LoadLevel" binds= ["ice-hockey"]]
 [connection signal="pressed" from="UI/CenterContainer/VBoxContainer/Container/Load King of the Mountain" to="." method="LoadLevel" binds= ["king-of-the-mountain"]]

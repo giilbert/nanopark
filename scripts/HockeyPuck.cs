@@ -54,6 +54,7 @@ public partial class HockeyPuck : RigidBody2D
         PuckOwner = null;
 
         _canPickUp = false;
+        ApplyTorque(Inertia * Mathf.Pi * 100);
         await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
         _canPickUp = true;
     }

@@ -29,7 +29,7 @@ public partial class Player : Node
         if (controls == LevelManager.ControlType.Keyboard)
             _controls = new KeyboardController();
         else
-            throw new Exception("unimplemented");
+            _controls = new JoystickController();
 
         _color = color;
         _id = id;

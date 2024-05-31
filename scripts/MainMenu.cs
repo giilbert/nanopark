@@ -7,6 +7,10 @@ public partial class MainMenu : Node2D
     private Button _addKeyboardPlayerButton;
     private Button _removeKeyboardPlayerButton;
 
+    private Label _joystickPlayerCountLabel;
+    private Button _addJoystickPlayerButton;
+    private Button _removeJoystickPlayerButton;
+
     public override void _Ready()
     {
         _keyboardPlayerCountLabel = GetNode<Label>(
@@ -18,6 +22,16 @@ public partial class MainMenu : Node2D
         _removeKeyboardPlayerButton = GetNode<Button>(
             "UI/CenterContainer/VBoxContainer/Keyboard Players/Remove"
         );
+
+        _joystickPlayerCountLabel = GetNode<Label>(
+            "UI/CenterContainer/VBoxContainer/Joystick Players/Label"
+        );
+        _addJoystickPlayerButton = GetNode<Button>(
+            "UI/CenterContainer/VBoxContainer/Joystick Players/Add"
+        );
+        _removeJoystickPlayerButton = GetNode<Button>(
+            "UI/CenterContainer/VBoxContainer/Joystick Players/Remove"
+        );
     }
 
     private void UpdateUI()
@@ -26,6 +40,9 @@ public partial class MainMenu : Node2D
         int numberOfKeyboardPlayers = levelManager.GetNumberOfPlayers(
             LevelManager.ControlType.Keyboard
         );
+        int numberOfJoystickPlayers = levelManager.GetNumberOfPlayers(
+            LevelManager.ControlType.Joystick
+        );
 
         _keyboardPlayerCountLabel.Text =
             numberOfKeyboardPlayers
@@ -33,6 +50,13 @@ public partial class MainMenu : Node2D
             + (numberOfKeyboardPlayers != 1 ? "s" : "");
         _addKeyboardPlayerButton.Disabled = numberOfKeyboardPlayers == 3;
         _removeKeyboardPlayerButton.Disabled = numberOfKeyboardPlayers == 0;
+
+        _joystickPlayerCountLabel.Text =
+            numberOfJoystickPlayers
+            + " joystick player"
+            + (numberOfJoystickPlayers != 1 ? "s" : "");
+        _addKeyboardPlayerButton.Disabled = JoystickController.AvailableIds.Count == 0;
+        _removeKeyboardPlayerButton.Disabled = numberOfJoystickPlayers == 0;
     }
 
     public void OnAddKeyboardPlayer()
@@ -43,7 +67,19 @@ public partial class MainMenu : Node2D
 
     public void OnRemoveKeyboardPlayer()
     {
-        LevelManager.Instance.MainMenuRemoveLastKeyboardPlayer();
+        LevelManager.Instance.MainMenuRemoveLastPlayerOfType(LevelManager.ControlType.Keyboard);
+        UpdateUI();
+    }
+
+    public void OnAddJoystickPlayer()
+    {
+        LevelManager.Instance.MainMenuAddPlayer(LevelManager.ControlType.Joystick);
+        UpdateUI();
+    }
+
+    public void OnRemoveJoystickPlayer()
+    {
+        LevelManager.Instance.MainMenuRemoveLastPlayerOfType(LevelManager.ControlType.Joystick);
         UpdateUI();
     }
 
