@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxugfsb0wk2jx"]
+
+[ext_resource type="Shader" path="res://scripts/player.gdshader" id="1_r148o"]
+[ext_resource type="Script" path="res://scripts/WhackAMolePlayer.cs" id="2_8t3wp"]
+[ext_resource type="Texture2D" uid="uid://mwljcuvutthe" path="res://art/whack-a-mole-cursor.png" id="3_u7lel"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tg7id"]
+shader = ExtResource("1_r148o")
+shader_parameter/color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdnn4"]
+shader = ExtResource("1_r148o")
+shader_parameter/color = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdmnb"]
+size = Vector2(64, 28)
+
+[node name="Cursor" type="RigidBody2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tg7id")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("2_8t3wp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_qdnn4")
+scale = Vector2(2, 2)
+texture = ExtResource("3_u7lel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_cdmnb")

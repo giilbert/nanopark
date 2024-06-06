@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://qra5lmiw182j"]
+
+[ext_resource type="PackedScene" uid="uid://bxugfsb0wk2jx" path="res://templates/whack-a-mole-player.tscn" id="1_t2vto"]
+
+[node name="Whack A Mole" type="Node2D"]
+texture_filter = 1
+metadata/player_type = ExtResource("1_t2vto")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Spawn Points" type="Node" parent="."]
+
+[node name="1" type="Node2D" parent="Spawn Points"]
+position = Vector2(-100, -100)
+
+[node name="2" type="Node2D" parent="Spawn Points"]
+position = Vector2(0, -100)
+
+[node name="3" type="Node2D" parent="Spawn Points"]
+position = Vector2(100, -100)
+
+[node name="4" type="Node2D" parent="Spawn Points"]
+position = Vector2(-100, 0)
+
+[node name="5" type="Node2D" parent="Spawn Points"]
+
+[node name="6" type="Node2D" parent="Spawn Points"]
+position = Vector2(100, 0)
+
+[node name="7" type="Node2D" parent="Spawn Points"]
+position = Vector2(-100, 100)
+
+[node name="8" type="Node2D" parent="Spawn Points"]
+position = Vector2(0, 100)
+
+[node name="9" type="Node2D" parent="Spawn Points"]
+position = Vector2(100, 100)

@@ -107,12 +107,16 @@ public partial class LevelManager : Node
         Resource templateResource = levelScene.GetMeta("player_type").As<Resource>();
         PackedScene template = GD.Load<PackedScene>(templateResource.ResourcePath);
 
+        int spawnPointIndex = 0;
+
         foreach (Player player in _players.Values)
         {
             Node2D actor = template.Instantiate() as Node2D;
+            actor.Position = spawnPoints[spawnPointIndex];
+            spawnPointIndex = (spawnPointIndex + 1) % spawnPoints.Length;
             player.AttachActor(actor);
             levelScene.AddChild(actor);
-            camera.AddPointOfInterest(actor);
+            camera?.AddPointOfInterest(actor);
         }
     }
 
