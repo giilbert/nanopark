@@ -4,7 +4,7 @@ using Godot;
 
 public partial class JoystickController : Controls, IDisposable
 {
-    public static readonly Stack<string> AvailableIds = new(new[] { "1", "2" });
+    public static readonly Stack<string> AvailableIds = new(new[] { "1", "2", "3", "4" });
     private const float DEAD_ZONE = 50f;
     private readonly string _id;
 

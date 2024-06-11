@@ -86,6 +86,10 @@ void respondWithControllerStates()
     serializeWriteControllerState(secondaryOne.controllerOne);
     serializeWriteControllerState(secondaryOne.controllerTwo);
 
+    TwiceControllerState secondaryTwo = requestControllerState(3);
+    serializeWriteControllerState(secondaryTwo.controllerOne);
+    serializeWriteControllerState(secondaryTwo.controllerTwo);
+
     // End tag
     Serial.write((uint8_t)0x00);
     Serial.flush();

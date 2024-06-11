@@ -141,7 +141,7 @@ public partial class LevelManager : Node
             GD.Print("Available port: " + point);
         }
 
-        Glue.Connect("/dev/ttyACM1");
+        Glue.Connect("/dev/ttyACM0");
 
         // MainMenuAddPlayer(ControlType.Keyboard);
         // MainMenuAddPlayer(ControlType.Keyboard);

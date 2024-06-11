@@ -4,7 +4,7 @@ using Godot;
 
 public partial class Player : Node
 {
-    public readonly LevelManager.ControlType ControlType;
+    public LevelManager.ControlType ControlType;
     public int Id
     {
         get { return _id; }
@@ -33,6 +33,7 @@ public partial class Player : Node
 
         _color = color;
         _id = id;
+        ControlType = controls;
 
         AttachActor(actor);
     }

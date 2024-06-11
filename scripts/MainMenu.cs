@@ -43,6 +43,7 @@ public partial class MainMenu : Node2D
         int numberOfJoystickPlayers = levelManager.GetNumberOfPlayers(
             LevelManager.ControlType.Joystick
         );
+        GD.Print(LevelManager.ControlType.Keyboard == LevelManager.ControlType.Joystick);
 
         _keyboardPlayerCountLabel.Text =
             numberOfKeyboardPlayers
@@ -55,8 +56,8 @@ public partial class MainMenu : Node2D
             numberOfJoystickPlayers
             + " joystick player"
             + (numberOfJoystickPlayers != 1 ? "s" : "");
-        _addKeyboardPlayerButton.Disabled = JoystickController.AvailableIds.Count == 0;
-        _removeKeyboardPlayerButton.Disabled = numberOfJoystickPlayers == 0;
+        _addJoystickPlayerButton.Disabled = JoystickController.AvailableIds.Count == 0;
+        _removeJoystickPlayerButton.Disabled = numberOfJoystickPlayers == 0;
     }
 
     public void OnAddKeyboardPlayer()

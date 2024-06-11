@@ -19,7 +19,7 @@ size = Vector2(64, 28)
 texture_filter = 1
 material = SubResource("ShaderMaterial_tg7id")
 gravity_scale = 0.0
-lock_rotation = true
+inertia = 500.0
 script = ExtResource("2_8t3wp")
 
 [node name="Sprite" type="Sprite2D" parent="."]

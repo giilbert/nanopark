@@ -1,9 +1,9 @@
 #include <Wire.h>
 
-const int ID = 2;
+const int ID = 3;
 
-const int CONTROLLER1_ID = 1;
-const int CONTROLLER2_ID = 2;
+const int CONTROLLER1_ID = 3;
+const int CONTROLLER2_ID = 4;
 
 typedef struct ControllerState
 {

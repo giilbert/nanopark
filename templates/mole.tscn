@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://drl0lrfuhq73s"]
+
+[ext_resource type="Script" path="res://scripts/Mole.cs" id="1_ugbv5"]
+[ext_resource type="Texture2D" uid="uid://cx54xwtm8ymsm" path="res://art/mole.png" id="2_3d2uq"]
+[ext_resource type="Texture2D" uid="uid://h8dcl0fe1d60" path="res://art/ground.png" id="3_qiv0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duymo"]
+size = Vector2(32, 24)
+
+[node name="Mole" type="Node2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_ugbv5")
+
+[node name="Mole" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("2_3d2uq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_duymo")
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(0, 4)
+texture = ExtResource("3_qiv0j")
